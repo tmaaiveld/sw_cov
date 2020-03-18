@@ -1,0 +1,65 @@
+Data collection
+    - Trawl twitter
+
+
+    Reference for how the API retrieves results:
+    https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
+
+    looks like the API is restricted (low query count, max 100 queries per search, etc.)
+    30-day search is accessible with a configurable endpoint
+    https://developer.twitter.com/en/docs/tweets/search/overview/premium
+
+    collection procedure:
+    before the pres: quick trawl of tweets over the last week via the basic API
+    after:
+        - explore capabilities of Sandbox 30-day plan [Ersin] < After presentation?
+        - maybe all our dev accounts can trawl 25K tweets for a 125K tweet dataset.
+
+
+    - list news sources used (BBC etc.)
+    - cite any reports we use
+    - CSSE database
+
+Data sources
+
+    Twitter data
+    - assign a location
+    - favs
+    - retweets
+    - more?
+    - pos/neg labeling
+    - by day
+
+    Observational data
+    - CSSE data from CoViD
+
+    Domain knowledge data
+    - news articles & announcements
+        - worldwide
+        - for specific countries
+    - WHO updates
+
+
+
+Analysis
+
+    - stuff from Handson 1
+
+    - what is the relationship between pos/neg sentiment and certain announcements?
+        - check worldwide
+        - check by country
+
+Visualisation
+    tweets, retweet fav counts
+    pos/neg label distribution
+    linear correlation between twitter & target
+
+Limitations
+***
+
+
+JOBS
+
+Tommy:
+- extract as much data as possible for t-7 and store it
+- update the group so they know what can be done in terms of location assignment etc.

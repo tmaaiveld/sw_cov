@@ -12,6 +12,7 @@ import pandas as pd
 import configparser
 import argparse
 import json
+import numpy as np
 
 import twitter
 
@@ -69,23 +70,24 @@ statuses = results['statuses']
 j = 0
 tweet = {}
 for i, status in enumerate(statuses):
-    if status['user']['geo_enabled'] and len(status['user']['location'])!=0:
-        if args.verbose:
-            print(json.dumps(status, indent=4, sort_keys=True))
-        tweet[j]                   = {}
-        tweet[j]['id']             = status['id']
-        tweet[j]['location']       = status['user']['location']
-        tweet[j]['place']          = status['place']
-        tweet[j]['retweet_count']  = status['retweet_count']
-        tweet[j]['text']           = status['text']
-        tweet[j]['username']       = status['user']['name']
-        tweet[j]['created_at']     = status['created_at']
-        j += 1
+    # if status['user']['geo_enabled'] and len(status['user']['location'])!=0:
+    if args.verbose:
+        print(json.dumps(status, indent=4, sort_keys=True))
+    tweet[j]                   = {}
+    tweet[j]['id']             = status['id']
+    tweet[j]['location']       = status['user']['location']
+    tweet[j]['place']          = status['place']
+    tweet[j]['retweet_count']  = status['retweet_count']
+    tweet[j]['text']           = status['text']
+    tweet[j]['username']       = status['user']['name']
+    tweet[j]['created_at']     = status['created_at']
+    j += 1
 
 df = pd.DataFrame.from_dict(tweet).T
 
-if args.verbose >= 2:
-    print(df)
+# if args.verbose >= 2:
+#     print(df)
+print(df)
 
 # geo location
 geolocator = Nominatim(user_agent="twitter-api")
@@ -102,11 +104,11 @@ for read_tweet in tweet:
 
     # If too many connection requests
     except:
-        pass
+        location = np.nan
 
 gmap = gmplot.GoogleMapPlotter(30, 0, 3)
 gmap.heatmap(coordinates['latitude'], coordinates['longitude'], radius=20)
 gmap.draw("python_heatmap.html")
 # end of geo location
 
-df.to_csv("export.csv", sep='\t', encoding='utf-8')
+df.to_csv(f"export_{q}.csv", encoding='utf-8')
